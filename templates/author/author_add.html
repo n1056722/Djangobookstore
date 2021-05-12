@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<h3>新增作者</h3>
+ <form action="{% url 'bookstore:author_add' %}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            名稱 : <input name="author_name">
+        </p>
+        <button class="btn btn-success" type="submit">
+            新增
+        </button>
+    </form>
+</body>
+</html>
+{% endblock %}

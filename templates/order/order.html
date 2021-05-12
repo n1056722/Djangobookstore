@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ title }}</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+    <table>
+
+        <tr>
+            <th>書名</th>
+            <th>單價</th>
+            <th>數量</th>
+            <th>總價</th>
+        </tr>
+        {% for order in order_list %}
+            <tr>
+                <td>{{ order.book_name }}</td>
+                <td>{{ order.book_price }}</td>
+                <td>{{ order.amount }}</td>
+                <td>{{ order.total_price }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>
+                <a href="{% url 'bookstore:order_add' %}">新增訂單</a>
+            </td>
+        </tr>
+    </table>
+
+    </body>
+    </html>
+{% endblock %}

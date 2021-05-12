@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <meta charset='UTF-8'>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript" language="JavaScript">
+    function author_delete() {
+        if (confirm("確定刪除嗎?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+
+<table>
+    <tr>
+        <th>管理</th>
+        <th>作者名稱</th>
+        <th>此作者上架書籍數量</th>
+    </tr>
+    {% for message in messages %}
+        <div class="alert aler-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    {% for author in author_list %}
+        <tr>
+            <td>
+                <a onclick="return author_delete()" href="{% url 'bookstore:author_delete' author.id %}">删除</a>
+                <a href="{% url 'bookstore:author_edit' author.id %}">編輯</a>
+            </td>
+            <td> {{ author.name }} </td>
+            <td>{{ author.book_count }}</td>
+        </tr>
+    {% endfor %}
+
+    <tr>
+        <td>
+            <a href="{% url 'bookstore:author_add' %}">新增作者</a>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>
+{% endblock %}

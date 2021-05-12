@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    {% for it in amount_sum %}
+        <table>
+            <tr>
+                <td>{{ it }}</td>
+            </tr>
+        </table>
+    {% endfor %}
+ <td>{{ price_total }}</td>
+
+    </body>
+    </html>
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="{% url 'bookstore:order_add' %}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            書本 :
+            <select name="book_id">
+                {% for book in book_option %}
+                    <option value="{{ book.pk }}">{{ book.name }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            數量 : <input name="amount">
+        </p>
+        <button class="btn btn-success" type="submit">
+            新增
+        </button>
+    </form>
+</body>
+</html>

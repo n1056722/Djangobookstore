@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>編輯書本</h3>
+    <form action="{% url 'bookstore:books_edit' pk %}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            <select name="author_id">
+                {% for author in author_option %}
+                    {% if author.pk == author_pk %}
+                        <option value="{{ author.pk }}" selected="selected">{{ author.name }}</option>
+                    {% else %}
+                        <option value="{{ author.pk }}">{{ author.name }}</option>
+                    {% endif %}
+                    
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            書本名稱 : <input name="book_name" value="{{ name }}">
+        </p>
+        <p>
+            價格 : <input name="price" value="{{ price }}">
+        </p>
+        <button class="btn btn-success" type="submit">
+            修改
+        </button>
+    </form>
+    
+{% endblock  %}

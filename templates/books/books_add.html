@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<h3>新增書籍</h3>
+<form action="{% url 'bookstore:books_add' %}"
+        method="post">
+        {% csrf_token %}
+        <p>
+            <select name="author_id">
+                {% for author in author_option %}
+                    <option value="{{ author.pk }}">{{ author.name }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            書本名稱 : <input name="book_name">
+        </p>
+        <p>
+            價格 : <input name="price">
+        </p>
+        <button class="btn btn-success" type="submit">
+            新增
+        </button>
+    </form>
+</body>
+</html>
+{% endblock %}
